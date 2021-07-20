@@ -86,7 +86,7 @@
 		<!-- Contact 2 -->
 			<section class="pt-80 pb-100 text-center contact_2 bg-dark">
 				<div class="container px-xl-0">
-					<form action="https://formspree.io/f/mnqlblly" method="post">
+					<form id="talentForm" action="https://formspree.io/f/mnqlblly" method="post">
 						<div class="row justify-content-center">
 							<div class="col-xl-6 col-lg-8 col-md-10">
 								<div class="f-14 semibold text-uppercase sp-20 color-transparent-white" data-aos="fade-down" data-aos-delay="0">
@@ -114,6 +114,26 @@
 							La contactaremos lo antes posible.
 						</div>
 					</form>
+					<script>
+                        /* attach a submit handler to the form */
+                        $("#talentForm").submit(function(event) {
+
+                            /* stop form from submitting normally */
+                            event.preventDefault();
+
+                            /* get some values from elements on the page: */
+                            var $form = $(this),
+                                message = $form.find('input[name="message"]').val(),
+                                email = $form.find('input[name=email]').val(),
+                                url = $form.attr('action');
+
+                            /* Send the data using post */
+                            var posting = $.post(url, {
+                                message: message,
+                                email: email
+                            });
+                        });
+                    </script>
 				</div>
 			</section>
 			<!-- Content 19 -->
